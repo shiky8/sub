@@ -1,5 +1,5 @@
 # sub
-subscribe boot to youtube channel by mored list of emails 
+subscribe boot to youtube channel by  a word list of emails addrees and passwored  
 
 i made that project  in python3
 
