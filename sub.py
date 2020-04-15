@@ -1,5 +1,6 @@
 #!/bin/bash/python3
 # by shiky
+
 from time import sleep
 import csv as cs
 from selenium import webdriver
@@ -19,15 +20,13 @@ def gloin(em,passed):
 def glogout():
     browser.get("https://accounts.google.com/SignOutOptions?hl=en&continue=https://mail.google.com/mail&service=mail")
     browser.find_element_by_xpath('//button[normalize-space()="Sign out"]').click()
-def de():
-    browser.find_element_by_id("li").click()
+
 def add_lis(f):
     dlist=[]
     em = cs.reader(f)
-    for r in f:
+    for r in em:
         dlist.append(r)
     return dlist
-
 looges=open("email.txt",'r')
 #passer=open("pass.txt",'r')
 email_list=add_lis(looges)
@@ -39,13 +38,17 @@ s=0
 #channel=str(input("Enter the youtube channel link here : "))
 channel="https://www.youtube.com/channel/UCCr0OdiJv77QhBFwPE88J7Q"
 for i in range(len(email_list)):
-    gloin(email_list[i],password)
-    #browser.get("https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw")
-    browser.get(channel)
-    Sub = browser.find_element_by_id("subscribe-button")
-    Sub.click()
-    glogout()
-    browser.close()
-    browser = webdriver.Firefox(executable_path="./geckodriver")
-#print("finished bro : ) ")
-#browser.close()
+    try:
+        gloin(email_list[i],password)
+        #browser.get("https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw")
+        browser.get(channel)
+        Sub = browser.find_element_by_id("subscribe-button")
+        Sub.click()
+        glogout()
+        browser.close()
+        browser = webdriver.Firefox(executable_path="./geckodriver")
+    except:
+        print("try again")
+
+print("done")
+browser.close()
